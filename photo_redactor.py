@@ -63,4 +63,22 @@ window = QWidget()
 window.resize(1200, 850)
 window.setWindowTitle('Photo Redactor (v.0.0.1)')
 
+btn_dir = QPushButton('Directory')
+lb_image = QLabel('Image')
+tbn_files =  QListWidget()
 
+btn_left = QPushButton('Left')
+btn_righ = QPushButton('Righ')
+
+btn_flip = QPushButton('Flip')
+btn_sharp = QPushButton('Sharp')
+btn_bl_wt = QPushButton('Black and White')
+btn_blure = QPushButton('Blure')
+btn_conture = QPushButton('Conture')
+btn_detail = QPushButton('Detalisation')
+
+btn_info = QPushButton('INFO')
+
+row = QHBoxLayout()
+colmn1 = QVBoxLayout()
+colmn2 = QVBoxLayout()
