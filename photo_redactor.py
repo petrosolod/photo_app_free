@@ -82,3 +82,4 @@ btn_info = QPushButton('INFO')
 row = QHBoxLayout()
 colmn1 = QVBoxLayout()
 colmn2 = QVBoxLayout()
+
