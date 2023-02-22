@@ -3,30 +3,30 @@ from PyQt6.QtWidgets import QApplication, QWidget, QFileDialog, QLabel, QPushBut
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPixmap
 
-from PIL import Image 
+from PIL import Image
 from PIL.ImageFilter import DETAIL, BLUR
 
 
 class ImageProcessor:
-    def __init__(self): 
+    def __init__(self):
         pass
 
     def load_image(self, filename):
         pass
 
-    def save_image(self): 
+    def save_image(self):
         pass
 
-    def bl_wt(self): 
+    def bl_wt(self):
         pass
 
-    def to_left(self): 
+    def to_left(self):
         pass
 
     def to_right(self):
         pass
 
-    def flip(self): 
+    def flip(self):
         pass
 
     def go_blur(self):
@@ -39,23 +39,23 @@ def filter_images(files, extentions):
         for ext in extentions:
             if filename.endswith(ext):
                 result.append(filename)
-    return result 
+    return result
 
 
 def choose_workdir():
-    global workdir 
+    global workdir
     workdir = QFileDialog.getExistingDirectory
 
+
 def show_name_list():
-    extentions = ['.jpg', '.jpeg', '.bmp', '.gif', '.png' ]
+    extentions = ['.jpg', '.jpeg', '.bmp', '.gif', '.png']
     choose_workdir()
     filenames = filter_images(os.listdir(workdir), extentions)
 
-    
+
 def show_info():
     my_info = QMessageBox()
     my_info.setText('Demo photo \nVer 1.0')
-
 
 
 app = QApplication
@@ -65,7 +65,7 @@ window.setWindowTitle('Photo Redactor (v.0.0.1)')
 
 btn_dir = QPushButton('Directory')
 lb_image = QLabel('Image')
-tbn_files =  QListWidget()
+btn_files = QListWidget()
 
 btn_left = QPushButton('Left')
 btn_righ = QPushButton('Righ')
@@ -83,3 +83,22 @@ row = QHBoxLayout()
 colmn1 = QVBoxLayout()
 colmn2 = QVBoxLayout()
 
+colmn1.addWidget(btn_dir)
+colmn1.addWidget(btn_files)
+colmn2.addWidget(lb_image)
+colmn1.addWidget(btn_info)
+
+row_tools = QHBoxLayout()
+row_tools.addWidget(btn_left)
+row_tools.addWidget(btn_righ)
+row_tools.addWidget(btn_flip)
+row_tools.addWidget(btn_sharp)
+row_tools.addWidget(btn_bl_wt)
+row_tools.addWidget(btn_blure)
+row_tools.addWidget(btn_conture)
+row_tools.addWidget(btn_detail)
+
+colmn2.addLayout(row_tools)
+
+
+app.exec()
