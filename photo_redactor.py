@@ -9,16 +9,26 @@ from PIL.ImageFilter import DETAIL, BLUR
 
 class ImageProcessor:
     def __init__(self):
-        pass
+        self.image = None
+        self.dir = None
+        self.filename = None
+        self.seve_dir = 'modified'
 
     def load_image(self, filename):
-        pass
+        self.filename = filename
+        fullname = os.path.join(workdir,filename)
+        self.image = Image.open(fullname) 
 
     def save_image(self):
-        pass
+        path = os.path.join(workdir, self.save_dir)
+        if not (os.path.exists(path) or os.path.isdir(path)):
+            os.mkdir(path)
+        fullname = os.path.join(path, self.filename)
+
+        self.image.save(fullname)
 
     def bl_wt(self):
-        pass
+        self.image = self.image.convert('L')
 
     def to_left(self):
         pass
@@ -44,7 +54,7 @@ def filter_images(files, extentions):
 
 def choose_workdir():
     global workdir
-    workdir = QFileDialog.getExistingDirectory
+    workdir = QFileDialog.getExistingDirectory()
 
 
 def show_name_list():
@@ -56,6 +66,9 @@ def show_name_list():
 def show_info():
     my_info = QMessageBox()
     my_info.setText('Demo photo \nVer 1.0')
+
+    
+workdir = ""
 
 
 app = QApplication
@@ -88,17 +101,22 @@ colmn1.addWidget(btn_files)
 colmn2.addWidget(lb_image)
 colmn1.addWidget(btn_info)
 
-row_tools = QHBoxLayout()
-row_tools.addWidget(btn_left)
-row_tools.addWidget(btn_righ)
-row_tools.addWidget(btn_flip)
-row_tools.addWidget(btn_sharp)
-row_tools.addWidget(btn_bl_wt)
-row_tools.addWidget(btn_blure)
-row_tools.addWidget(btn_conture)
-row_tools.addWidget(btn_detail)
+row_tools1 = QHBoxLayout()
+row_tools1.addWidget(btn_left)
+row_tools1.addWidget(btn_righ)
+row_tools1.addWidget(btn_flip)
+row_tools1.addWidget(btn_sharp)
+row_tools1.addWidget(btn_bl_wt)
+row_tools1.addWidget(btn_blure)
+row_tools1.addWidget(btn_conture)
+row_tools1.addWidget(btn_detail)
 
-colmn2.addLayout(row_tools)
+colmn2.addLayout(row_tools1)
+
+row.addLayout(colmn1, 20)
+row.addLayout(colmn2, 80)
+
+window.setLayout(row)
 
 
 app.exec()
